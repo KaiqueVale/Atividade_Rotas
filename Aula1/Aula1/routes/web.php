@@ -3,6 +3,10 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\PaginaController;
+use App\Http\Controllers\CursoController;
+use App\Http\Controllers\AlunoController;
+use App\Http\Controllers\DisciplinaController;
+use App\Http\Controllers\ProdutoController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -87,10 +91,10 @@ Route::get('/equipe', [PaginaController::class, 'equipe']);
 
 #Questão11
 
-Route::get('/usuario/{nome}', function ($nome){
+// Route::get('/usuario/{nome}', function ($nome){
 
-     return "Usuário: " .$nome;
- });
+//      return "Usuário: " .$nome;
+//  });
 
  #Questão12
 
@@ -98,3 +102,34 @@ Route::get('/usuario/{nome}', function ($nome){
 
      return "O id do produto é: " .$id;
 });
+
+
+// Exercícios Práticos — Controllers no Laravel
+// Questão1
+
+Route::get('/cursos', [App\Http\Controllers\CursoController::class, 'index']);
+
+// Questão2
+Route::get('/cursos/novo', [App\Http\Controllers\CursoController::class, 'create']);
+
+// Questão3
+Route::get('/cursos/listagem', [App\Http\Controllers\CursoController::class, 'listagem']);
+
+// Questão4
+Route::get('/cursos/{id}', [App\Http\Controllers\CursoController::class, 'show']);
+
+// Questão5
+Route::post('/cursos', [App\Http\Controllers\CursoController::class, 'store']);
+
+// Questão6
+Route::resource('alunos', AlunoController::class);
+
+// Questão7
+Route::get('disciplinas', [DisciplinaController::class,'index']);
+Route::get('/disciplinas/create', [DisciplinaController::class,'create']);
+Route::post('/disciplinas', [DisciplinaController::class,'store']);
+Route::get('/disciplinas/{id}', [DisciplinaController::class,'show']);
+
+//Atividade — Fluxo create → store
+Route::get('/produtos/create', [ProdutoController::class, 'create']);
+Route::post('/produtos', [ProdutoController::class, 'store']);
